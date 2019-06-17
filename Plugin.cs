@@ -21,7 +21,8 @@ namespace ConfigureLobbyInfo
             {
                 Instance = this;
                 Logger.Log("ConfigureLobbyInfo loaded!", ConsoleColor.Cyan);
-                ConfigureLobby();
+                if(Level.isLoaded)
+                    ConfigureLobby();
             }
             else
             {

@@ -12,3 +12,17 @@ E:\Users\Deniel\source\repos\ConfigureLobbyInfo\bin\Debug\ConfigureLobbyInfo.dll
 E:\Users\Deniel\source\repos\ConfigureLobbyInfo\bin\Debug\ConfigureLobbyInfo.pdb
 E:\Users\Deniel\source\repos\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.dll
 E:\Users\Deniel\source\repos\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.pdb
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\ConfigureLobbyInfo.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\ConfigureLobbyInfo.pdb
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\Assembly-CSharp-firstpass.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\Assembly-CSharp.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\Rocket.API.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\Rocket.Core.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\Rocket.Unturned.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\UnityEngine.CoreModule.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\bin\Debug\UnityEngine.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.csprojAssemblyReference.cache
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.csproj.CoreCompileInputs.cache
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.csproj.CopyComplete
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.dll
+E:\Users\Deniel\Documents\GitHub\ConfigureLobbyInfo\obj\Debug\ConfigureLobbyInfo.pdb
