@@ -6,7 +6,7 @@ namespace ConfigureLobbyInfo
         public bool PluginEnabled;
         public bool HidePlugins;
         public bool HideWorkshop;
-        //public bool HideConfig;
+        public bool HideConfig;
         public bool IsPVP;
         public bool IsBattlEyeSecure;
         public string Mode;
@@ -20,7 +20,7 @@ namespace ConfigureLobbyInfo
             this.PluginEnabled = true;
             this.HidePlugins = true;
             this.HideWorkshop = true;
-            //this.HideConfig = true;
+            this.HideConfig = true;
             this.IsPVP = true;
             this.IsBattlEyeSecure = true;
             this.Mode = "normal";
