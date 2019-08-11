@@ -1,128 +1,61 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Rocket.Core;
+﻿using Rocket.API;
 using Rocket.Core.Plugins;
-using SDG.Unturned;
-using SDG.Framework.Modules;
-using Steamworks;
-using SDG.Framework.Translations;
-using System.Globalization;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using UnityEngine;
-using Logger = Rocket.Core.Logging.Logger;
-using System.Reflection;
 
-namespace ConfigureLobbyInfo
+namespace RestartServer
 {
-    public class Plugin : RocketPlugin<PluginConfiguration>
+    class Plugin : RocketPlugin<PluginConfiguration>
     {
         private static Plugin Instance;
+        internal static string path;
         protected override void Load()
         {
-            if (Configuration.Instance.PluginEnabled)
+            if (Configuration.Instance.Enabled)
             {
                 Instance = this;
-                Logger.Log("ConfigureLobbyInfo loaded!", ConsoleColor.Cyan);
-                if(Level.isLoaded)
-                    ConfigureLobby();
-                Level.onPostLevelLoaded += OnPostLevelLoaded;
+                path = $@"Plugins\RestartServer\RestartServer.configuration.xml";
             }
             else
             {
-                Logger.Log("Plugin is disabled in Configuration");
                 UnloadPlugin();
             }
         }
         protected override void Unload()
         {
-            Level.onPostLevelLoaded -= OnPostLevelLoaded;
         }
-
-        public static int GetWorkshopCount() =>
-            (String.Join(",", Provider.getServerWorkshopFileIDs().Select(x => x.ToString()).ToArray()).Length - 1) / 120 + 1;
-        public static int GetConfigurationCount() =>
-            (String.Join(",", typeof(ModeConfigData).GetFields()
-            .SelectMany(x => x.FieldType.GetFields().Select(y => y.GetValue(x.GetValue(Provider.modeConfigData))))
-            .Select(x => x is bool v ? v ? "T" : "F" : (String.Empty + x)).ToArray()).Length - 1) / 120 + 1;
-
-        public void OnPostLevelLoaded(int a) => ConfigureLobby();
-        public void HideRocketPlugins(bool hide)
+    }
+    public class Server
+    {
+        [XmlAttribute("StartPath")]
+        public string StartPath { get; set; }
+        public Server()
         {
 
         }
-        public void ConfigureLobby()
+    }
+    class CommandRestart : IRocketCommand
+    {
+        public AllowedCaller AllowedCaller => AllowedCaller.Both;
+        public string Name => "restart";
+        public string Help => "command to restart your server";
+        public string Syntax => "[/restart]  [/restart <after seconds>]  [/restart <restart index> <every seconds> on]  [/restart <restart index> <every seconds> off]";
+        public List<string> Aliases => new List<string>();
+        public List<string> Permissions => new List<string>() { "rocket.restartserver" };
+
+        public void Execute(IRocketPlayer caller, string[] command)
         {
-            string mode;
-            string perspective;
-
-            if (Configuration.Instance.HidePlugins)
-                SteamGameServer.SetKeyValue("rocketplugins", "");
-            else
-                SteamGameServer.SetKeyValue("rocketplugins", string.Join(",", R.Plugins.GetPlugins().Select(plugin => plugin.Name).ToArray()));
-
-            if (Configuration.Instance.HideWorkshop)
+            XmlSerializer formatter = new XmlSerializer(typeof(PluginConfiguration));
+            Server server;
+            using (FileStream fs = new FileStream(Plugin.path, FileMode.Open))
             {
-                SteamGameServer.SetKeyValue("Browser_Workshop_Count", "");
-                SteamGameServer.SetKeyValue("Browser_Workshop_Line_", "");
-                SteamGameServer.SetKeyValue("rocketplugins", "");
+                PluginConfiguration config = (PluginConfiguration)formatter.Deserialize(fs);
+                server = config.Server;
             }
-            else
-            {
-                SteamGameServer.SetKeyValue("Browser_Workshop_Count", GetWorkshopCount().ToString());
-            }
-
-            if (Configuration.Instance.HideConfig)
-                SteamGameServer.SetKeyValue("Browser_Config_Count", "0");
-            else
-                SteamGameServer.SetKeyValue("Browser_Config_Count", GetConfigurationCount().ToString());
-
-            switch (Configuration.Instance.Mode.ToLower().Trim())   
-            {
-                case ("easy"):
-                    mode = "EZY";
-                    break;
-                case ("hard"):
-                    mode = "HRD";
-                    break;
-                default:
-                    mode = "NRM"; 
-                    break;
-            }
-            switch (Configuration.Instance.Perspective.ToLower().Trim())
-            {
-                case ("first"):
-                    perspective = "1Pp";
-                    break;
-                case ("third"):
-                    perspective = "3Pp";
-                    break;
-                case ("vehicle"):
-                    perspective = "4Pp";
-                    break;
-                default:
-                    perspective = "2Pp";
-                    break;
-            }
-            string tags = String.Concat(new string[]
-            {
-                Configuration.Instance.IsPVP ? "PVP" : "PVE",
-                ",",
-                Configuration.Instance.HasCheats ? "CHy" : "CHn",
-                ",",
-                mode,
-                ",",
-                perspective,
-                ",",
-                Configuration.Instance.HideWorkshop ? "WSn" : "WSy",
-                ",",
-                Configuration.Instance.IsGold ? "GLD" : "F2P",
-                ",",
-                Configuration.Instance.IsBattlEyeSecure ? "BEy" : "BEn",
-                ",<gm>",
-                Configuration.Instance.Game,
-                "</gm>",
-            });
-            SteamGameServer.SetGameTags(tags);
+            Application.Quit();
+            System.Diagnostics.Process.Start(server.StartPath);
         }
     }
 }

@@ -1,0 +1,15 @@
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\RestartServer.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\RestartServer.pdb
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Assembly-CSharp-firstpass.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Assembly-CSharp.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Rocket.API.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Rocket.Core.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Rocket.Unturned.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\UnityEngine.CoreModule.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\UnityEngine.PhysicsModule.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\bin\Debug\Newtonsoft.Json.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\obj\Debug\RestartServer.csprojAssemblyReference.cache
+E:\Users\Deniel\Documents\GitHub\RestartServer\obj\Debug\RestartServer.csproj.CoreCompileInputs.cache
+E:\Users\Deniel\Documents\GitHub\RestartServer\obj\Debug\RestartServer.csproj.CopyComplete
+E:\Users\Deniel\Documents\GitHub\RestartServer\obj\Debug\RestartServer.dll
+E:\Users\Deniel\Documents\GitHub\RestartServer\obj\Debug\RestartServer.pdb
